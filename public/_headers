@@ -1,0 +1,14 @@
+# Vite fingerprints everything under /assets, so those may be cached forever.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# These three decide whether a deploy is ever noticed. They keep their names
+# across builds, so they must be revalidated instead of served from cache.
+/index.html
+  Cache-Control: no-cache
+/sw.js
+  Cache-Control: no-cache
+/registerSW.js
+  Cache-Control: no-cache
+/manifest.webmanifest
+  Cache-Control: no-cache
