@@ -1,0 +1,57 @@
+/**
+ * Design tokens lifted from docs/DESIGN.md.
+ *
+ * Two deliberate departures from that document, both recorded in CLAUDE.md:
+ *   1. DESIGN.md anchors its rem scale at 1rem = 10px (the `font-size: 62.5%`
+ *      trick). We use the browser default 1rem = 16px so Tailwind's utilities
+ *      line up; every value below is the same *pixel* size as the source.
+ *   2. Token names use Tailwind v4's namespaces (--color-*, --radius-*,
+ *      --shadow-*, --text-*) so utilities generate themselves.
+ */
+
+@theme {
+  /* ---- Greens: four tiers, each with its own surface role ---- */
+  --color-brand-green: #006241;   /* Starbucks Green — headings */
+  --color-accent-green: #00754a;  /* Green Accent — filled CTAs */
+  --color-house-green: #1e3932;   /* House Green — dark bands, footer */
+  --color-uplift-green: #2b5148;  /* Green Uplift — decorative accents */
+  --color-light-green: #d4e9e2;   /* pale mint wash */
+
+  /* ---- Warm-neutral canvas. Pure white as a page background is off-brand. ---- */
+  --color-canvas: #f2f0eb;        /* Neutral Warm — the page */
+  --color-ceramic: #edebe9;       /* zone separators, empty-bar troughs */
+  --color-surface: #ffffff;       /* cards */
+  --color-neutral-cool: #f9f9f9;  /* quiet utility containers */
+
+  /* ---- Ink. Body text is never pure black. ---- */
+  --color-ink: rgb(0 0 0 / 0.87);
+  --color-ink-soft: rgb(0 0 0 / 0.58);
+  --color-ink-faint: rgb(0 0 0 / 0.30);
+  --color-on-dark: #ffffff;
+  --color-on-dark-soft: rgb(255 255 255 / 0.70);
+
+  /* ---- Lines and semantics ---- */
+  --color-hairline: #e7e7e7;
+  --color-input-border: #d6dbde;
+  --color-danger: #c82014;
+  --color-warning: #fbbc05;
+
+  /* ---- Radius: cards are 12px, every button is a full pill ---- */
+  --radius-card: 12px;
+  --radius-pill: 50px;
+
+  /* ---- Elevation: 2–3 low-alpha shadows stacked, never one heavy drop ---- */
+  --shadow-card: 0 0 0.5px 0 rgb(0 0 0 / 0.14), 0 1px 1px 0 rgb(0 0 0 / 0.24);
+  --shadow-nav: 0 1px 3px rgb(0 0 0 / 0.1), 0 2px 2px rgb(0 0 0 / 0.06),
+    0 0 2px rgb(0 0 0 / 0.07);
+  --shadow-frap: 0 0 6px rgb(0 0 0 / 0.24), 0 8px 12px rgb(0 0 0 / 0.14);
+  --shadow-frap-active: 0 0 6px rgb(0 0 0 / 0.24), 0 8px 12px rgb(0 0 0 / 0);
+
+  /* ---- Type ---- */
+  --font-sans: 'Inter Variable', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --text-micro: 13px;
+  --text-micro--line-height: 1.5;
+
+  /* ---- Motion ---- */
+  --ease-expander: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}

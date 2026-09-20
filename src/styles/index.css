@@ -1,0 +1,71 @@
+@import './fonts.css';
+@import 'tailwindcss';
+@import './tokens.css';
+
+/* Tailwind v4 scans the files it can see from the CSS entry; be explicit. */
+@source '../**/*.{ts,tsx}';
+
+@layer base {
+  html {
+    background-color: var(--color-canvas);
+    /* Keeps the standalone PWA from rubber-banding like a web page. */
+    overscroll-behavior-y: none;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    /* The tight tracking is what makes this type system read as itself. */
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    /* iOS zooms the page when an input smaller than 16px is focused. */
+    text-size-adjust: 100%;
+  }
+
+  /* Minutes change constantly; tabular figures stop them from shuffling. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+  }
+
+  button {
+    font: inherit;
+    letter-spacing: inherit;
+  }
+}
+
+@utility tap {
+  /* The signature press feedback — DESIGN.md applies it to every button. */
+  transition: all 0.2s ease;
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+@utility safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+/* Bottom sheet: slide up on open, drop away on close. Browsers without
+   @starting-style simply show it instantly, which is a fine fallback. */
+.sheet {
+  transition:
+    translate 0.3s var(--ease-expander),
+    opacity 0.3s var(--ease-expander),
+    overlay 0.3s allow-discrete,
+    display 0.3s allow-discrete;
+  translate: 0 0;
+  opacity: 1;
+}
+.sheet:not([open]) {
+  translate: 0 100%;
+  opacity: 0;
+}
+@starting-style {
+  .sheet[open] {
+    translate: 0 100%;
+    opacity: 0;
+  }
+}
